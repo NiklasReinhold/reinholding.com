@@ -49,9 +49,11 @@ const Ring = ({ index, progress }: RingProps) => {
 };
 
  const Breathe = () => {
-  const { width, height } = useWindowDimensions();
+  var { width, height } = useWindowDimensions();
+  width /= 2;
+  height /= 2;
   const center = useMemo(
-    () => vec(width / 2, height / 2 - 64),
+    () => vec(width / 2, height / 2 - 20),
     [height, width]
   );
 
