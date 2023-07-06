@@ -7,7 +7,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <WithSkiaWeb
-        getComponent={() => import('./src/FibonacciSphere')}
+        getComponent={() => import('./src/Breathe')}
         fallback={<Text style={{ textAlign: 'center' }}>Loading Skia...</Text>}
       />
     </View>
