@@ -1,4 +1,4 @@
-import { Canvas, Easing, FitBox, Path, rect, useClockValue, useComputedValue, useLoop } from "@shopify/react-native-skia";
+import { Canvas, SkPaint, Easing, FitBox, Path, rect, useClockValue, useComputedValue, useLoop, Skia } from "@shopify/react-native-skia";
 import { StyleSheet } from 'react-native';
 import { prepare, GradientAlongPath } from "./PathAlongGradient";
 import { withTiming } from "react-native-reanimated/lib/types/lib/reanimated2/animation";
@@ -16,7 +16,8 @@ export default function Reinholding() {
     var paths = splitPath();
     var gradient_paths = [];
     for(var i = 0; i < paths.length; i++){
-        gradient_paths.push(<GradientAlongPath key={i} {...prepare(paths[i])} progress={progress}/>);
+            
+        gradient_paths.push(<GradientAlongPath key={i} {...prepare(paths[i])} progress={progress} color={Skia.Color("black")}/>);
     }
 
     return (

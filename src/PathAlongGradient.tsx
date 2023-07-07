@@ -5,6 +5,7 @@ import type {
   Vector,
   Line,
   SkPaint,
+  Color,
 } from "@shopify/react-native-skia";
 import {
   clamp,
@@ -24,7 +25,7 @@ import { Dimensions, StyleSheet } from "react-native";
 import { fitRect, getPointAtLength, PathGeometry } from "./Geometry";
 
 const strokeWidth = 2;
-const pad = 25;
+const pad = 5;
 const { width, height } = Dimensions.get("window");
 
 export const dst = rect(pad, pad, width - pad * 2, height - pad * 2);
@@ -35,26 +36,6 @@ const repeat = <T,>(input: T[], i: number, result: T[] = []): T[] => {
   }
   return repeat(input, i - 1, result.concat(input));
 };
-
-const colors = repeat(
-  [
-    "#3FCEBC",
-    "#3CBCEB",
-    "#5F96E7",
-    "#816FE3",
-    "#9F5EE2",
-    "#BD4CE0",
-    "#DE589F",
-    "#FF645E",
-    "#FDA859",
-    "#FAEC54",
-    "#9EE671",
-    "#67E282",
-    "#3FCEBC",
-  ],
-  1
-);
-const inputRange = colors.map((_, i) => i / (colors.length - 1));
 
 const basePaint = Skia.Paint();
 basePaint.setStrokeWidth(strokeWidth);
@@ -74,24 +55,6 @@ const tessellate = (geo: PathGeometry, t0: number, t1: number): Line[] => {
     return [...tessellate(geo, t0, t05), ...tessellate(geo, t05, t1)];
   } else {
     const paint = basePaint.copy();
-    const startColor = interpolateColors(
-      t0 / geo.getTotalLength(),
-      inputRange,
-      colors
-    );
-    const endColor = interpolateColors(
-      t1 / geo.getTotalLength(),
-      inputRange,
-      colors
-    );
-    const gradient = Skia.Shader.MakeLinearGradient(
-      p0,
-      p1,
-      [startColor, endColor],
-      null,
-      TileMode.Clamp
-    );
-    paint.setShader(gradient);
     return [{ p1: p0, p2: p1, length: t0, paint }];
   }
 };
@@ -119,12 +82,14 @@ interface GradientAlongPathProps {
   totalLength: number;
   lines: Line[];
   progress: SkiaValue<number>;
+  color: Float32Array;
 }
 
 export const GradientAlongPath = ({
   progress,
   lines,
   totalLength,
+  color
 }: GradientAlongPathProps) => {
   return (
     <Group>
@@ -139,6 +104,7 @@ export const GradientAlongPath = ({
           lines.forEach((line) => {
             const currentLength = totalLength * progress.current;
             const { p1, p2, length, paint } = line;
+            paint.setColor(color);
             if (length > currentLength) {
               return;
             }
