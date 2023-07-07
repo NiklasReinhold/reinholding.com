@@ -74,6 +74,7 @@ export const DrawPath = ({
         paint={basePaint} 
         end={progress} 
         style="stroke" 
+        color={color}
         strokeWidth={strokeWidth}>
           {effect}
       </Path>

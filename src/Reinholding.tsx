@@ -8,25 +8,35 @@ import { GetPathsByLetter, GetSplitPaths } from "./Path";
 const duration = 1500;
 
 export default function Reinholding() {
+    //Use a clock to animate the drawing
     const clock = useClockValue();
     if(clock.current > duration) clock.stop();
-
     const progress = useComputedValue(
         () => clamp(clock.current / duration, 0, 1),
         [clock]
     );
 
-    const effect = GetRandomEffect();
+    var letters = GetPathsByLetter();
+    var elements = [];
 
-    var paths = splitPath();
-    var gradient_paths = [];
-    for(var i = 0; i < paths.length; i++){
-        gradient_paths.push(<DrawPath key={i} {...prepare(paths[i])} progress={progress} color={Skia.Color("black")} effect={effect}/>);
+    //Get the effect for the word
+    const effect = null;//GetRandomEffect();
+
+    //Iterate through each letter
+    for(var indexLetter = 0; indexLetter < letters.length; indexLetter++){
+        //Get the color for this letter
+        const color = Skia.Color(colors[indexLetter%colors.length]);
+        //const color = Skia.Color(GetRandomColor());
+
+        //Iterate through each path in the letter
+        for(var indexPath = 0; indexPath < letters[indexLetter].length; indexPath++){
+            elements.push(<DrawPath key={`${indexLetter}-${indexPath}`} {...prepare(letters[indexLetter][indexPath])} progress={progress} color={color} effect={effect}/>);
+        }    
     }
 
     return (
         <Canvas style={styles.container}>
-            {gradient_paths}
+            {elements}
         </Canvas>
     );
 }
