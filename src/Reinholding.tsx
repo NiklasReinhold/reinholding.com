@@ -1,23 +1,27 @@
-import { Canvas, SkPaint, Easing, FitBox, Path, rect, useClockValue, useComputedValue, useLoop, Skia } from "@shopify/react-native-skia";
+import { Canvas, SkPaint, Easing, FitBox, Path, rect, useClockValue, useComputedValue, useLoop, Skia, clamp } from "@shopify/react-native-skia";
 import { StyleSheet } from 'react-native';
-import { prepare, GradientAlongPath } from "./PathAlongGradient";
+import { prepare, DrawPath, GetRandomEffect } from "./DrawPath";
 import { withTiming } from "react-native-reanimated/lib/types/lib/reanimated2/animation";
 import { useSharedValue } from "react-native-reanimated";
 import { splitPath } from "./Path";
 
+const duration = 1500;
+
 export default function Reinholding() {
     const clock = useClockValue();
+    if(clock.current > duration) clock.stop();
+
     const progress = useComputedValue(
-        () => clock.current / 1500,
+        () => clamp(clock.current / duration, 0, 1),
         [clock]
     );
-    if(clock.current > 1000) clock.stop();
+
+    const effect = GetRandomEffect();
 
     var paths = splitPath();
     var gradient_paths = [];
     for(var i = 0; i < paths.length; i++){
-            
-        gradient_paths.push(<GradientAlongPath key={i} {...prepare(paths[i])} progress={progress} color={Skia.Color("black")}/>);
+        gradient_paths.push(<DrawPath key={i} {...prepare(paths[i])} progress={progress} color={Skia.Color("black")} effect={effect}/>);
     }
 
     return (
