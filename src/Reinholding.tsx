@@ -37,3 +37,18 @@ const styles = StyleSheet.create({
         alignContent: 'center',
     },
 });
+
+const colors = [
+    "#3FCEBC",
+    "#3CBCEB",
+    "#5F96E7",
+    "#816FE3",
+    "#9F5EE2",
+    "#BD4CE0",
+    "#DE589F",
+    "#FF645E",
+    "#FDA859",
+    "#FAEC54",
+    "#9EE671",
+];
+const GetRandomColor = () => colors[Math.floor(Math.random() * colors.length)];
