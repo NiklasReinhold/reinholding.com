@@ -7,6 +7,7 @@ export default function Main() {
     return (
         <Canvas style={styles.container}>
             <Reinholding />
+            <Breathe />
         </Canvas>
     );
 }
@@ -16,9 +17,3 @@ const styles = StyleSheet.create({
       flex: 1
     },
 });
-
-/*
-<Canvas style={styles.container}>
-        <Breathe />
-      </Canvas>
-      */

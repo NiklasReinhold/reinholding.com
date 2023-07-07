@@ -23,8 +23,8 @@ import { Dimensions, StyleSheet } from "react-native";
 
 import { fitRect, getPointAtLength, PathGeometry } from "./Geometry";
 
-const strokeWidth = 15;
-const pad = 75;
+const strokeWidth = 2;
+const pad = 25;
 const { width, height } = Dimensions.get("window");
 
 export const dst = rect(pad, pad, width - pad * 2, height - pad * 2);
@@ -98,7 +98,7 @@ const tessellate = (geo: PathGeometry, t0: number, t1: number): Line[] => {
 
 export const prepare = (svg: string) => {
   const path = Skia.Path.MakeFromSVGString(svg)!;
-  const src = path.computeTightBounds();
+  const src = rect(0, 0, 594.301, 99.001); //path.computeTightBounds(); 
   const m3 = fitRect(src, dst);
   path.transform(m3);
   const geo = new PathGeometry(path);
