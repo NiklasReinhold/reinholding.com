@@ -7,7 +7,6 @@ export default function Main() {
     return (
         <Canvas style={styles.container}>
             <Reinholding />
-            <Breathe />
         </Canvas>
     );
 }
