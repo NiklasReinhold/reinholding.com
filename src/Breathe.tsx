@@ -1,14 +1,12 @@
 import React, { useMemo } from "react";
-import { StyleSheet, useWindowDimensions } from "react-native";
+import { useWindowDimensions } from "react-native";
 import type { SkiaValue } from "@shopify/react-native-skia";
 import {
   useComputedValue,
   useLoop,
   BlurMask,
   vec,
-  Canvas,
   Circle,
-  Fill,
   Group,
   polar2Canvas,
   Easing,
@@ -72,21 +70,13 @@ const Ring = ({ index, progress }: RingProps) => {
   );
 
   return (
-    <Canvas style={styles.container} debug>
-      <Group origin={center} transform={transform} blendMode="screen">
-        <BlurMask style="solid" blur={0} />
-        {new Array(6).fill(0).map((_, index) => {
-          return <Ring key={index} index={index} progress={progress} />;
-        })}
-      </Group>
-    </Canvas>
+    <Group origin={center} transform={transform} blendMode="screen">
+      <BlurMask style="solid" blur={0} />
+      {new Array(6).fill(0).map((_, index) => {
+        return <Ring key={index} index={index} progress={progress} />;
+      })}
+    </Group>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default Breathe

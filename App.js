@@ -7,8 +7,8 @@ export default function App() {
   return (
     <View style={styles.container}>
       <WithSkiaWeb
-        getComponent={() => import('./src/Breathe')}
-        fallback={<Text style={{ textAlign: 'center', color:'white' }}></Text>}
+        getComponent={() => import('./src/Main')}
+        fallback={<Text style={{ textAlign: 'center', color:'white' }}>Loading...</Text>}
       />
     </View>
   );
