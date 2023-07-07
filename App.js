@@ -2,14 +2,12 @@ import Constants from 'expo-constants';
 import { Text, View, StyleSheet } from 'react-native';
 
 import { WithSkiaWeb } from '@shopify/react-native-skia/lib/module/web';
+import Main from "./src/Reinholding";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <WithSkiaWeb
-        getComponent={() => import('./src/Main')}
-        fallback={<Text style={{ textAlign: 'center', color:'white' }}>Loading...</Text>}
-      />
+      <Main />
     </View>
   );
 }
@@ -19,6 +17,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     paddingTop: Constants.statusBarHeight,
-    backgroundColor: 'rgb(36,43,56)',
+    backgroundColor: 'rgb(165,210,253)',
   },
 });
