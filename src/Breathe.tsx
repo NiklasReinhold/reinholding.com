@@ -24,8 +24,11 @@ interface RingProps {
 }
 
 const Ring = ({ index, progress }: RingProps) => {
-  const { width, height } = useWindowDimensions();
-  const R = width / 4;
+  var { width, height } = useWindowDimensions();
+  width/=2;
+  height/=2;
+
+  const R = width / 8;
   const center = useMemo(
     () => vec(width / 2, height / 2 - 64),
     [height, width]
@@ -50,10 +53,11 @@ const Ring = ({ index, progress }: RingProps) => {
 
  const Breathe = () => {
   var { width, height } = useWindowDimensions();
-  width /= 2;
-  height /= 2;
+  width/=2;
+  height/=2;
+  
   const center = useMemo(
-    () => vec(width / 2, height / 2 - 20),
+    () => vec(width / 2, height / 2-64),
     [height, width]
   );
 
@@ -69,9 +73,8 @@ const Ring = ({ index, progress }: RingProps) => {
 
   return (
     <Canvas style={styles.container} debug>
-      <Fill color="rgb(36,43,56)" />
       <Group origin={center} transform={transform} blendMode="screen">
-        <BlurMask style="solid" blur={40} />
+        <BlurMask style="solid" blur={0} />
         {new Array(6).fill(0).map((_, index) => {
           return <Ring key={index} index={index} progress={progress} />;
         })}

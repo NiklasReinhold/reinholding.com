@@ -8,7 +8,7 @@ export default function App() {
     <View style={styles.container}>
       <WithSkiaWeb
         getComponent={() => import('./src/Breathe')}
-        fallback={<Text style={{ textAlign: 'center' }}>Loading Skia...</Text>}
+        fallback={<Text style={{ textAlign: 'center', color:'white' }}></Text>}
       />
     </View>
   );
@@ -19,6 +19,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     paddingTop: Constants.statusBarHeight,
-    backgroundColor: '#ecf0f1',
+    backgroundColor: 'rgb(36,43,56)',
   },
 });
