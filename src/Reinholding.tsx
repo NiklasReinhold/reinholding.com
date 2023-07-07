@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { prepare, DrawPath, GetRandomEffect } from "./DrawPath";
 import { withTiming } from "react-native-reanimated/lib/types/lib/reanimated2/animation";
 import { useSharedValue } from "react-native-reanimated";
-import { splitPath } from "./Path";
+import { GetPathsByLetter, GetSplitPaths } from "./Path";
 
 const duration = 1500;
 
