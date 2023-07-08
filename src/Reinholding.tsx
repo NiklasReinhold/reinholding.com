@@ -1,8 +1,9 @@
-import { Canvas, useClockValue, useComputedValue, Skia, clamp, useValue } from "@shopify/react-native-skia";
+import { Canvas, useClockValue, useComputedValue, Skia, clamp, useValue, useValueEffect } from "@shopify/react-native-skia";
 import { StyleSheet } from 'react-native';
-import { prepare, DrawPath, GetRandomEffect } from "./DrawPath";
+import { prepare, DrawPath } from "./DrawPath";
 import { GetPathsByLetter } from "./Path";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
+import { GetRandomEffect } from "./Effects";
 
 const duration = 1500;
 const duration_break = 500;
@@ -22,7 +23,6 @@ export default function Reinholding() {
                 if(fade_trigger){
                     fade_trigger = false;
                     fade_iteration.current++;
-                    console.log(fade_iteration.current)
                 }
                 //Fade in and break by clamp
                 return clamp(time / duration, 0, 1)

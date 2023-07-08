@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import type {
   SkiaValue,
   SkPath,
@@ -17,6 +17,7 @@ import {
   DashPathEffect,
   DiscretePathEffect,
   Line2DPathEffect,
+  useValueEffect,
 } from "@shopify/react-native-skia";
 import { Dimensions} from "react-native";
 
@@ -40,16 +41,6 @@ export const prepare = (svg: string) => {
   return { path};
 };
 
-//Available effects
-const effects = [
-  <Line2DPathEffect
-    width={0.2}
-    matrix={processTransform2d([{ scale: 1.5 }])}
-    />,
-  <DashPathEffect intervals={[6, 6]} />,
-  <DiscretePathEffect length={10} deviation={2} />,
-];
-export const GetRandomEffect = () => effects[Math.floor(Math.random() * effects.length)];
 
 //Configure the paint
 const basePaint = Skia.Paint();
@@ -66,6 +57,11 @@ export const DrawPath = ({
   effect,
 }: DrawPathProps) => {
 
+  const [element, setElement] = React.useState<JSX.Element | null>(effect.current);
+  useValueEffect(effect, (value) => {
+    setElement(value);
+  });
+
   return (
     <Group>
       <Path 
@@ -75,7 +71,7 @@ export const DrawPath = ({
         style="stroke" 
         color={color}
         strokeWidth={strokeWidth}>
-          {effect.current}
+          {element}
       </Path>
     </Group>
   );
