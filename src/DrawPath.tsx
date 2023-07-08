@@ -1,9 +1,4 @@
 import React from "react";
-import type {
-  SkiaValue,
-  SkPath,
-  SkRect,
-} from "@shopify/react-native-skia";
 import {
   PaintStyle,
   StrokeJoin,
@@ -15,6 +10,9 @@ import {
   processTransform2d,
   fitbox,
   useValueEffect,
+  SkiaValue,
+  SkPath,
+  SkRect,
 } from "@shopify/react-native-skia";
 import { Dimensions} from "react-native";
 

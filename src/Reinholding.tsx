@@ -1,4 +1,4 @@
-import { Canvas, useClockValue, useComputedValue, Skia, clamp, useValue, Group } from "@shopify/react-native-skia";
+import { useClockValue, useComputedValue, Skia, clamp, useValue, Group } from "@shopify/react-native-skia";
 import { StyleSheet } from 'react-native';
 import { prepare, DrawPath } from "./DrawPath";
 import { GetPathsByLetter } from "./Path";
