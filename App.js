@@ -1,9 +1,10 @@
 import Constants from 'expo-constants';
+import { registerRootComponent } from 'expo';
 import { Text, View, StyleSheet } from 'react-native';
-
 import { WithSkiaWeb } from '@shopify/react-native-skia/lib/module/web';
 
 export default function App() {
+
   return (
     <View style={styles.container}>
       <WithSkiaWeb
@@ -19,6 +20,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     paddingTop: Constants.statusBarHeight,
-    backgroundColor: '#ebf9fa',
+    backgroundColor: '#FFFFFF',
   },
 });
+
+registerRootComponent(App);
