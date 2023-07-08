@@ -60,7 +60,7 @@ const Ring = ({ index, progress }: RingProps) => {
   );
 
   const progress = useLoop({
-    duration: 3000,
+    duration: 2000,
     easing: Easing.inOut(Easing.ease),
   });
 

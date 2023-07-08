@@ -1,13 +1,15 @@
 import Constants from 'expo-constants';
-import { View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 
 import { WithSkiaWeb } from '@shopify/react-native-skia/lib/module/web';
-import Main from "./src/Reinholding";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Main/>
+      <WithSkiaWeb
+        getComponent={() => import('./src/Main')}
+        fallback={<Text style={{ textAlign: 'center', color:'black' }}>Loading...</Text>}
+      />
     </View>
   );
 }

@@ -1,4 +1,4 @@
-import { Canvas, useClockValue, useComputedValue, Skia, clamp, useValue } from "@shopify/react-native-skia";
+import { Canvas, useClockValue, useComputedValue, Skia, clamp, useValue, Group } from "@shopify/react-native-skia";
 import { StyleSheet } from 'react-native';
 import { prepare, DrawPath } from "./DrawPath";
 import { GetPathsByLetter } from "./Path";
@@ -65,9 +65,9 @@ export default function Reinholding() {
     }
 
     return (
-        <Canvas style={styles.container}>
+        <Group>
             {elements}
-        </Canvas>
+        </Group>
     );
 }
 

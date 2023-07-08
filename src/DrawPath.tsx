@@ -15,7 +15,6 @@ import {
   processTransform2d,
   fitbox,
   useValueEffect,
-  Fill,
 } from "@shopify/react-native-skia";
 import { Dimensions} from "react-native";
 
@@ -23,7 +22,7 @@ const fitRect = (src: SkRect, dst: SkRect) =>
     processTransform2d(fitbox("contain", src, dst));
     
 const strokeWidth = 2;
-const pad = 5;
+const pad = 45;
 const { width, height } = Dimensions.get("window");
 
 //Size of the drawing

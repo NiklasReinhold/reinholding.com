@@ -4,7 +4,7 @@ import { DashPathEffect, DiscretePathEffect, Line2DPathEffect, processTransform2
 const effects = [
     null,
     <Line2DPathEffect
-      width={0.2}
+      width={0.3}
       matrix={processTransform2d([{ scale: 1.5 }])}
       />,
     <DashPathEffect intervals={[6, 6]} />,
