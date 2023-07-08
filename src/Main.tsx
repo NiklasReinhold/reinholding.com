@@ -6,7 +6,6 @@ import Reinholding from "./Reinholding";
 export default function Main() {
     return (
         <Canvas style={styles.container}>
-            <Breathe />
             <Reinholding />
         </Canvas>
     );
