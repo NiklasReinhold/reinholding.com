@@ -29,7 +29,7 @@ jobs:
         with:
           server: ftp.reinholding.com
           port: 21
-          username: ${{ secrets.FTP_USERNAME }}
+          username: niklas@reinholding.com
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./web-build/
           log-level: verbose
