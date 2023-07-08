@@ -1,5 +1,5 @@
 import Constants from 'expo-constants';
-import { Text, View, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 import { WithSkiaWeb } from '@shopify/react-native-skia/lib/module/web';
 import Main from "./src/Reinholding";
@@ -7,7 +7,7 @@ import Main from "./src/Reinholding";
 export default function App() {
   return (
     <View style={styles.container}>
-      <Main />
+      <Main/>
     </View>
   );
 }

@@ -1,13 +1,11 @@
-import { Canvas, useClockValue, useComputedValue, Skia, clamp, useValue, useValueEffect } from "@shopify/react-native-skia";
+import { Canvas, useClockValue, useComputedValue, Skia, clamp, useValue } from "@shopify/react-native-skia";
 import { StyleSheet } from 'react-native';
 import { prepare, DrawPath } from "./DrawPath";
 import { GetPathsByLetter } from "./Path";
-import { useCallback, useEffect } from "react";
 import { GetRandomEffect } from "./Effects";
 
 const duration = 1500;
 const duration_break = 500;
-
 
 export default function Reinholding() {
     var fade_iteration = useValue(0);
@@ -93,4 +91,3 @@ const colors = [
     "#FAEC54",
     "#9EE671",
 ];
-const GetRandomColor = () => colors[Math.floor(Math.random() * colors.length)];

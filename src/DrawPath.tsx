@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React from "react";
 import type {
   SkiaValue,
   SkPath,
@@ -14,10 +14,8 @@ import {
   Path,
   processTransform2d,
   fitbox,
-  DashPathEffect,
-  DiscretePathEffect,
-  Line2DPathEffect,
   useValueEffect,
+  Fill,
 } from "@shopify/react-native-skia";
 import { Dimensions} from "react-native";
 
@@ -57,6 +55,7 @@ export const DrawPath = ({
   effect,
 }: DrawPathProps) => {
 
+  //Redraw the element when the effect changes
   const [element, setElement] = React.useState<JSX.Element | null>(effect.current);
   useValueEffect(effect, (value) => {
     setElement(value);
