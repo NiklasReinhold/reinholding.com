@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import type {
   SkiaValue,
   SkPath,
@@ -42,7 +42,6 @@ export const prepare = (svg: string) => {
 
 //Available effects
 const effects = [
-  null,
   <Line2DPathEffect
     width={0.2}
     matrix={processTransform2d([{ scale: 1.5 }])}
@@ -66,7 +65,7 @@ export const DrawPath = ({
   color, 
   effect,
 }: DrawPathProps) => {
-  basePaint.setColor(color)
+
   return (
     <Group>
       <Path 
@@ -76,7 +75,7 @@ export const DrawPath = ({
         style="stroke" 
         color={color}
         strokeWidth={strokeWidth}>
-          {effect}
+          {effect.current}
       </Path>
     </Group>
   );
@@ -85,6 +84,6 @@ export const DrawPath = ({
 interface DrawPathProps {
   path: SkPath;
   progress: SkiaValue<number>;
-  color: Float32Array;
-  effect: JSX.Element;
+  color: SkiaValue<Float32Array>;
+  effect: SkiaValue<JSX.Element>;
 }
