@@ -36,14 +36,6 @@ export const prepare = (svg: string) => {
   return { path};
 };
 
-
-//Configure the paint
-const basePaint = Skia.Paint();
-basePaint.setStrokeWidth(strokeWidth);
-basePaint.setStyle(PaintStyle.Stroke);
-basePaint.setStrokeJoin(StrokeJoin.Round);
-basePaint.setStrokeCap(StrokeCap.Round);
-
 //Draw
 export const DrawPath = ({
   progress,
@@ -62,7 +54,6 @@ export const DrawPath = ({
     <Group>
       <Path 
         path={path} 
-        paint={basePaint} 
         end={progress} 
         style="stroke" 
         color={color}

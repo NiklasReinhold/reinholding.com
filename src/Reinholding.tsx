@@ -52,6 +52,9 @@ export default function Reinholding() {
         var color = useComputedValue(
             () => {
                 //pay attention that the index does not get negative when subtaction fade_iteration.current
+                if(fade_iteration.current == 0) 
+                    return Skia.Color('#000000');
+
                 const shift = fade_iteration.current % colors.length; 
                 return Skia.Color(colors[(index - shift + colors.length)%colors.length]);
             },
