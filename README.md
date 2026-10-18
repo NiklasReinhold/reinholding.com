@@ -16,4 +16,4 @@ The whole site is two static files in `site/`: `index.html` (animation, about, w
 
 ## Deployment
 
-Every push to `main` uploads `site/` to the hosting provider over FTPS, see `.github/workflows/main.yml`. The password lives in the repository secret `FTP_PASSWORD`.
+Every push to `main` uploads `site/` to the hosting provider over FTPS, see `.github/workflows/main.yml`. The password lives in the repository secret `FTP_PASSWORD`. `site/.htaccess` turns off browser and proxy caching so every visit shows the current version.
