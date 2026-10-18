@@ -6,7 +6,7 @@ The landing page of reinholding.com. The word "Reinholding" draws itself, then r
 
 ## How it is built
 
-The whole site is `site/index.html`: an inline SVG, CSS keyframes and a few lines of JavaScript. There is no build step and no dependency. Open the file in a browser to preview it.
+The whole site is two static files in `site/`: `index.html` (animation, about, work, contact) and `imprint.html` (legal notice). The animation is an inline SVG, CSS keyframes and a few lines of JavaScript. There is no build step and no dependency. Open the files in a browser to preview them.
 
 - The draw animation is a `stroke-dashoffset` keyframe on a mask.
 - Colours and textures (dash, hatch) change on each loop in the script at the bottom of the file.

@@ -4,22 +4,37 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Reinholding</title>
-<meta name="description" content="Niklas Reinhold">
+<meta name="description" content="Ratisbona Reinholding OÜ, Tallinn: app and cloud development by Niklas Reinhold.">
 <link rel="icon" type="image/png" href="favicon.png">
 <style>
   :root {
     --bg: #ffffff;
     --ink: #000000;
+    --muted: #444444;
     /* each colour reaches at least 4.5:1 on white */
     --c0: #288478; --c1: #287E9D; --c2: #4B76B6; --c3: #7766D1; --c4: #9558D4; --c5: #B047D0;
     --c6: #BF4C89; --c7: #C74E49; --c8: #9F6A38; --c9: #7F782B; --c10: #58813F;
     --draw: 1.5s;
     --hold: 0.5s;
   }
-  html, body { height: 100%; margin: 0; }
-  body { display: grid; place-items: center; background: var(--bg); color: var(--ink); }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
   .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  /* leaves the About heading visible below the fold so visitors know to scroll */
+  .hero { min-height: 72svh; display: grid; place-items: center; }
   svg { width: min(100vw - 90px, 1100px); height: auto; display: block; overflow: visible; }
+  main { max-width: 40rem; margin: 0 auto; padding: 0 16px 64px; }
+  section { margin-bottom: 56px; }
+  h2 { font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 16px; }
+  p { margin: 0 0 12px; }
+  a { color: inherit; }
+  ul { list-style: none; margin: 0; padding: 0; }
+  li { padding: 14px 0; border-top: 1px solid #e5e5e5; }
+  li:last-child { border-bottom: 1px solid #e5e5e5; }
+  li strong { font-weight: 600; }
+  li span { display: block; color: var(--muted); }
+  li .store { font-size: 14px; }
+  footer { max-width: 40rem; margin: 0 auto; padding: 0 16px 32px; font-size: 14px; color: var(--muted); }
   .letter { color: var(--ink); }
   .letter path {
     fill: none;
@@ -55,6 +70,7 @@
 </head>
 <body>
 <h1 class="visually-hidden">Reinholding</h1>
+<div class="hero">
 <svg viewBox="0 0 594.301 99.001" role="img" aria-labelledby="title" xmlns="http://www.w3.org/2000/svg">
   <title id="title">Reinholding</title>
   <defs>
@@ -137,26 +153,65 @@
       </g>
   </g>
 </svg>
+</div>
+
+<main>
+  <section>
+    <h2>About</h2>
+    <p>Ratisbona Reinholding OÜ is the software company of Niklas Reinhold, a full stack engineer with a focus on backends and automation. It builds mobile apps for iOS and Android, the APIs and cloud services behind them, and the hosting that keeps them running, from the first prototype to the published app.</p>
+    <p>That includes hosting for regulated data: medical records, tax documents and systems for military personnel, with the compliance work each of them needs. Before founding the company, Niklas spent five years building on the AWS stack. The company is registered in Tallinn, Estonia, and works with clients in Germany.</p>
+  </section>
+
+  <section>
+    <h2>Work</h2>
+    <ul>
+      <li>
+        <strong>meiva</strong>
+        <span>App for midwives covering visits, documentation and billing. In development.</span>
+      </li>
+      <li>
+        <strong>Snorefox</strong> for Stravent
+        <span>Sleep apnea screening with the phone's microphone, clinically validated.</span>
+        <span class="store"><a href="https://apps.apple.com/de/app/snorefox-schlafapnoe-check/id1636007486">App Store</a></span>
+      </li>
+      <li>
+        <strong>Remonon</strong> for Novat
+        <span>VAT refund app for US personnel stationed in Germany.</span>
+        <span class="store"><a href="https://apps.apple.com/de/app/remonon/id1593396987">App Store</a></span>
+      </li>
+      <li>
+        <strong>Life Kinetik Coach-App</strong>
+        <span>Internal app for Life Kinetik coaches.</span>
+        <span class="store"><a href="https://apps.apple.com/de/app/life-kinetik-coach-app/id1590891593">App Store</a></span>
+      </li>
+      <li>
+        <strong>brainjo</strong>
+        <span>VR therapy for children with ADHD and a companion app for their parents.</span>
+        <span class="store"><a href="https://apps.apple.com/de/app/brainjo/id1643910467">App Store</a></span>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Contact</h2>
+    <p>Niklas Reinhold<br><a href="mailto:niklas@reinholding.com">niklas@reinholding.com</a><br><a href="tel:+4915165151879">+49 151 65151879</a></p>
+  </section>
+</main>
+
+<footer>Ratisbona Reinholding OÜ, Tallinn · <a href="imprint.html">Legal notice</a></footer>
 <script>
   // First loop is black with no texture. Every loop after that shifts the colours
-  // one letter along and picks a random texture that differs from the last one.
+  // one letter along and cycles through the textures in a fixed order.
   const word = document.getElementById("word");
   const letters = [...word.querySelectorAll(".letter")];
   const colors = Array.from({ length: 11 }, (_, i) => "var(--c" + i + ")");
   const effects = ["", "effect-hatch", "effect-dash"];
   let iteration = 0;
-  let lastEffect = 0;
-  const nextEffect = () => {
-    let index = Math.floor(Math.random() * (effects.length - 1));
-    if (index >= lastEffect) index++;
-    lastEffect = index;
-    return effects[index];
-  };
   const onLoop = () => {
     iteration++;
     const shift = iteration % colors.length;
     letters.forEach((el, i) => { el.style.color = colors[(i - shift + colors.length) % colors.length]; });
-    word.setAttribute("class", nextEffect());
+    word.setAttribute("class", effects[iteration % effects.length]);
   };
   if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
     document.querySelector("#draw path").addEventListener("animationiteration", onLoop);
